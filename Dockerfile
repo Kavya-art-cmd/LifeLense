@@ -6,6 +6,5 @@ RUN powershell -Command "(Get-Content package.json) -replace '\"preinstall\": \"
 RUN rm -f pnpm-workspace.yaml pnpm-lock.yaml .npmrc 
 RUN npm install --legacy-peer-deps 
 RUN npm install -g ts-node tsconfig-paths typescript 
-RUN ln -s /usr/local/bin/node /usr/local/bin/pnpm 
 EXPOSE 3000 
 CMD ["ts-node", "-r", "tsconfig-paths/register", "--transpile-only", "artifacts/api-server/src/index.ts"]
