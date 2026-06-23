@@ -1,8 +1,9 @@
 FROM node:22-alpine 
-RUN npm install -g pnpm 
 WORKDIR /app 
 COPY . . 
-RUN pnpm install 
-RUN pnpm --filter @workspace/api-server... build 
+RUN sed -i 's/"catalog:"/"*"/g' package.json artifacts/*/package.json lib/*/package.json 2>nul || powershell -Command "Get-ChildItem -Filter package.json -Recurse ^| ForEach-Object { (Get-Content $_.FullName) -replace '\"catalog:\"', '\"*\"' ^| Set-Content $_.FullName }" 
+RUN powershell -Command "(Get-Content package.json) -replace '\"preinstall\": \".*?\",?', '' | Set-Content package.json" 2>nul || sed -i '/preinstall/d' package.json 
+RUN rm -f pnpm-workspace.yaml pnpm-lock.yaml .npmrc 
+RUN npm install --omit=dev --legacy-peer-deps 
 EXPOSE 3000 
-CMD ["pnpm", "--filter", "@workspace/api-server", "start"]
+CMD ["node", "artifacts/api-server/src/index.js"]
