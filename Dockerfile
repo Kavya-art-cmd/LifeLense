@@ -5,6 +5,6 @@ RUN sed -i 's/"catalog:"/"*"/g' package.json artifacts/*/package.json lib/*/pack
 RUN powershell -Command "(Get-Content package.json) -replace '\"preinstall\": \".*?\",?', '' | Set-Content package.json" 2>nul || sed -i '/preinstall/d' package.json 
 RUN rm -f pnpm-workspace.yaml pnpm-lock.yaml .npmrc 
 RUN npm install --legacy-peer-deps 
-RUN npm install -g ts-node tsconfig-paths typescript 
+RUN npm install -g tsx 
 EXPOSE 3000 
-CMD ["ts-node", "-r", "tsconfig-paths/register", "--transpile-only", "artifacts/api-server/src/index.ts"]
+CMD ["tsx", "artifacts/api-server/src/index.ts"]
