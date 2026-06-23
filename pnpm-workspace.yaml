@@ -2,8 +2,7 @@ packages:
   - "artifacts/*" 
   - "lib/*" 
   - "scripts" 
-catalog: 
-  "@types/node": "^22.10.2" 
+catalogMode: manual 
 allowBuilds: 
   esbuild: true 
   protobufjs: true 
