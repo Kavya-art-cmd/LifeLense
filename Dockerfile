@@ -7,4 +7,5 @@ RUN rm -f pnpm-workspace.yaml pnpm-lock.yaml .npmrc
 RUN npm install --legacy-peer-deps 
 RUN npm install -g ts-node tsconfig-paths typescript 
 EXPOSE 3000 
+ENV RAILWAY_START_COMMAND="ts-node -r tsconfig-paths/register --transpile-only artifacts/api-server/src/index.ts" 
 CMD ["ts-node", "-r", "tsconfig-paths/register", "--transpile-only", "artifacts/api-server/src/index.ts"]
