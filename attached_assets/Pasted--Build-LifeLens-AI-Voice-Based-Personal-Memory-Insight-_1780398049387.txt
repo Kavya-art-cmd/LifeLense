@@ -1,0 +1,520 @@
+# Build LifeLens – AI Voice-Based Personal Memory & Insight Agent
+
+Create a production-ready full-stack AI application called LifeLens.
+
+## Vision
+
+LifeLens is a voice-first AI life companion that remembers, understands, and helps users learn from their life experiences.
+
+Users should be able to call the AI, speak naturally, record memories, store decisions, retrieve experiences, generate insights, and visualize personal growth over time.
+
+LifeLens must feel like a futuristic AI operating system rather than a simple chatbot.
+
+---
+
+# Mandatory Tech Stack
+
+Backend:
+
+* Python
+* FastAPI
+
+Multi-Agent Framework:
+
+* CrewAI
+
+LLM:
+
+* Google Gemini
+
+Database:
+
+* PostgreSQL
+
+Vector Database:
+
+* ChromaDB
+
+Frontend:
+
+* React
+* TypeScript
+
+Voice:
+
+* Twilio Voice
+* OpenAI Whisper
+* ElevenLabs
+
+Animations:
+
+* Framer Motion
+
+Charts:
+
+* Recharts
+
+---
+
+# Core Features
+
+1. User Authentication
+
+   * Google Login
+   * Email/Password Login
+   * JWT Authentication
+
+2. Voice Calling Agent
+
+   * Users can call the AI directly.
+   * Real-time speech-to-text.
+   * Real-time AI responses.
+   * Natural voice output.
+   * Continuous conversation memory.
+
+3. Memory System
+
+   * Automatically store memories.
+   * Semantic search.
+   * Memory categorization.
+   * Long-term memory retrieval.
+
+4. Decision Tracking
+
+   * Store important decisions.
+   * Save reasoning.
+   * Retrieve past decisions.
+
+5. Timeline Generation
+
+   * Create personal timeline.
+   * Track milestones.
+   * Show achievements and growth.
+
+6. Insight Generation
+
+   * Detect patterns.
+   * Analyze habits.
+   * Generate weekly/monthly reports.
+
+7. AI Chat Interface
+
+   * Ask questions about life history.
+   * Retrieve memories.
+   * Analyze growth.
+   * Generate insights.
+
+---
+
+# Multi-Agent Architecture
+
+Create a real CrewAI multi-agent system.
+
+## Orchestrator Agent
+
+Responsibilities:
+
+* Route tasks.
+* Coordinate agents.
+* Combine outputs.
+* Generate final responses.
+
+## Memory Agent
+
+Role:
+Personal Historian
+
+Responsibilities:
+
+* Store memories.
+* Retrieve memories.
+* Semantic search.
+* Memory summaries.
+
+## Timeline Agent
+
+Role:
+Life Organizer
+
+Responsibilities:
+
+* Organize life events.
+* Generate timelines.
+* Track milestones.
+
+## Decision Agent
+
+Role:
+Decision Historian
+
+Responsibilities:
+
+* Store decisions.
+* Save reasoning.
+* Explain past choices.
+
+## Insight Agent
+
+Role:
+Personal Analyst
+
+Responsibilities:
+
+* Analyze memories.
+* Detect patterns.
+* Generate insights.
+
+---
+
+# Voice Call Flow
+
+User
+↓
+Twilio
+↓
+Whisper STT
+↓
+FastAPI
+↓
+CrewAI Orchestrator
+↓
+Memory Agent
+Timeline Agent
+Decision Agent
+Insight Agent
+↓
+Gemini
+↓
+ElevenLabs TTS
+↓
+User
+
+---
+
+# Automatic Memory Extraction
+
+During conversations automatically extract:
+
+* Achievements
+* Goals
+* Projects
+* Certifications
+* Challenges
+* Decisions
+* Habits
+* Learning Activities
+
+Store automatically without requiring manual entry.
+
+---
+
+# ChromaDB Memory Search
+
+Use embeddings for:
+
+* Memories
+* Decisions
+* Insights
+* Timeline Events
+
+Implement semantic retrieval.
+
+Example:
+"When did I first start learning ServiceNow?"
+
+The answer should come from memory retrieval rather than keyword matching.
+
+---
+
+# Call History
+
+Store:
+
+* Call date
+* Duration
+* Transcript
+* Extracted memories
+* Decisions
+* Generated insights
+
+Allow users to revisit conversations.
+
+---
+
+# Dashboard
+
+Display:
+
+* Total Memories
+* Decisions Recorded
+* Timeline Events
+* Growth Score
+* Recent Insights
+* Recent Achievements
+
+Use beautiful animated cards.
+
+---
+
+# Pages
+
+Create:
+
+* Landing Page
+* Login
+* Register
+* Dashboard
+* Voice Call Page
+* Memory Page
+* Timeline Page
+* Decision Page
+* Insights Page
+* AI Chat Page
+* Profile Page
+* Settings Page
+
+---
+
+# Premium AI UI Design
+
+The application must look like a modern AI startup product.
+
+Inspiration:
+
+* ChatGPT
+* Gemini
+* Cursor
+* Replit Agent
+* Notion
+* Arc Browser
+* ElevenLabs
+
+Use:
+
+* Glassmorphism
+* Dark Mode
+* Gradient Effects
+* Smooth Animations
+* Blur Effects
+* Micro-interactions
+* Modern Typography
+
+The UI should impress recruiters, investors, and hackathon judges.
+
+---
+
+# AI Core Orb
+
+Create a central AI Core Orb.
+
+The orb should:
+
+* Pulse while listening.
+* Rotate while thinking.
+* Glow while speaking.
+* React to agent activity.
+
+The orb acts as the visual brain of LifeLens.
+
+---
+
+# Real Agent Visualization
+
+Users must see agents working live.
+
+Do not use static cards only.
+
+Create animated AI agents.
+
+## Memory Agent
+
+Blue neural orb.
+
+Animations:
+
+* Searching memories.
+* Retrieving memories.
+* Memory particles flowing.
+
+## Timeline Agent
+
+Purple timeline orb.
+
+Animations:
+
+* Building timelines.
+* Scanning life events.
+* Connecting milestones.
+
+## Decision Agent
+
+Golden decision orb.
+
+Animations:
+
+* Exploring reasoning branches.
+* Decision tree visualizations.
+
+## Insight Agent
+
+Green insight orb.
+
+Animations:
+
+* Detecting patterns.
+* Generating insights.
+* Connecting memories.
+
+---
+
+# Agent Command Center
+
+Create a live agent workspace.
+
+When the user asks:
+
+"How have I changed this year?"
+
+Show:
+
+Memory Agent:
+Searching memories...
+
+Timeline Agent:
+Building timeline...
+
+Decision Agent:
+Retrieving decisions...
+
+Insight Agent:
+Generating growth analysis...
+
+Display live progress.
+
+Display status updates.
+
+Display completion states.
+
+---
+
+# Agent Communication Visualization
+
+Show information flowing between agents.
+
+Examples:
+
+Memory Agent → Insight Agent
+
+Timeline Agent → Insight Agent
+
+Decision Agent → Insight Agent
+
+Animate data particles moving between agents.
+
+Users should see collaboration happening in real time.
+
+---
+
+# Voice Call Experience
+
+The Voice Call page should be the most impressive part of the application.
+
+Display:
+
+* Central AI Core Orb
+* Live Audio Waveform
+* Agent Activity Panel
+* Real-Time Transcript
+* Agent Collaboration Visualization
+* Call Timer
+
+When AI speaks:
+
+* Orb glows.
+* Waveform animates.
+* Agent status updates.
+
+When user speaks:
+
+* Waveform reacts.
+* Agents activate.
+
+The experience should feel like talking to Jarvis from Iron Man.
+
+---
+
+# Analytics
+
+Display:
+
+* Growth Trends
+* Learning Trends
+* Habit Trends
+* Achievement Trends
+* Productivity Insights
+
+Create beautiful interactive charts.
+
+---
+
+# Database Tables
+
+Create:
+
+Users
+
+Memories
+
+Decisions
+
+TimelineEvents
+
+Insights
+
+CallHistory
+
+Conversations
+
+AgentLogs
+
+EmbeddingsMetadata
+
+---
+
+# Security
+
+Implement:
+
+* JWT Authentication
+* Password Hashing
+* Secure APIs
+* User Data Isolation
+* Environment Variables
+
+---
+
+# Code Quality
+
+Generate production-ready code.
+
+Use scalable architecture.
+
+Separate:
+
+* Agents
+* Services
+* Models
+* APIs
+* Frontend Components
+* Database Layer
+* Voice Services
+
+Generate a fully functional MVP that can be extended later with:
+
+* Future Self Agent
+* Past Self Agent
+* Goal Coach Agent
+* Accountability Agent
+* Habit Coach Agent
+
+The application should feel like a real AI operating system and a next-generation personal life companion.

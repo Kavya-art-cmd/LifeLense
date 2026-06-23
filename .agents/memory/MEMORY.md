@@ -1,0 +1,1 @@
+- [Gemini free-tier model quotas](gemini-quota.md) — 2.5-flash is 20 req/day; 2.0-flash shows limit:0; 1.5-flash NOT_FOUND in v1beta

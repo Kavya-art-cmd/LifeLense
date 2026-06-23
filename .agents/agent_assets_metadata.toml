@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Azm12qsztqPiF0emwvyG1"
+uri = "file://artifacts/lifelens/public/hero-orb.png"
+type = "image"
+title = "futuristic AI core orb"

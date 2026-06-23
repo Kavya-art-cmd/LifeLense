@@ -1,0 +1,140 @@
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { login } from "@/lib/auth";
+import { useToast } from "@/hooks/use-toast";
+import { AICoreOrb } from "@/components/ui/AICoreOrb";
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Invalid email address." }),
+  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
+});
+
+export default function Register() {
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    // Mock authentication
+    setTimeout(() => {
+      login("mock_token_123");
+      toast({
+        title: "Identity Created",
+        description: "Welcome to LifeLens. Core initialized.",
+      });
+      setLocation("/dashboard");
+    }, 1500);
+  }
+
+  return (
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[20%] left-[20%] w-[30%] h-[30%] bg-primary/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[20%] right-[20%] w-[30%] h-[30%] bg-secondary/10 rounded-full blur-[100px]" />
+      </div>
+
+      <Link href="/" className="absolute top-8 left-8 flex items-center gap-3 z-20 group">
+        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center border border-primary/50 group-hover:shadow-[0_0_15px_rgba(var(--primary),0.8)] transition-all">
+          <div className="w-2 h-2 rounded-full bg-primary" />
+        </div>
+        <span className="font-bold tracking-wider text-muted-foreground group-hover:text-white transition-colors">LifeLens</span>
+      </Link>
+
+      <div className="w-full max-w-md relative z-10">
+        <motion.div 
+          className="flex justify-center mb-8"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <AICoreOrb state={isLoading ? "thinking" : "idle"} size={100} />
+        </motion.div>
+
+        <motion.div
+          className="glass-panel p-8 rounded-2xl border border-white/10 shadow-2xl"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-semibold tracking-tight">Initialize Core</h1>
+            <p className="text-sm text-muted-foreground mt-2">Create your unique neural identity.</p>
+          </div>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">Designation</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" className="bg-black/50 border-white/10 focus-visible:ring-primary" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">Identity (Email)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="name@example.com" className="bg-black/50 border-white/10 focus-visible:ring-primary" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">Passkey</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="••••••••" className="bg-black/50 border-white/10 focus-visible:ring-primary" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-blue h-12 mt-2" disabled={isLoading}>
+                {isLoading ? "Generating Neural Pathways..." : "Create Identity"}
+              </Button>
+            </form>
+          </Form>
+
+          <div className="mt-6 text-center text-sm text-muted-foreground">
+            Already have an identity?{" "}
+            <Link href="/login" className="text-white hover:text-primary transition-colors">
+              Access Core
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
