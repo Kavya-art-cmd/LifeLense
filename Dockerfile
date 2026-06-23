@@ -1,7 +1,8 @@
 FROM node:22-alpine 
 WORKDIR /app 
 COPY . . 
-RUN sed -i 's/"catalog:"/"*"/g' package.json artifacts/*/package.json lib/*/package.json 2>nul || powershell -Command "Get-ChildItem -Filter package.json -Recurse ^| ForEach-Object { (Get-Content $_.FullName) -replace '\"catalog:\"', '\"*\"' ^| Set-Content $_.FullName }" 
+RUN sed -i 's/"catalog:"/"*"/g' package.json artifacts/*/package.json lib/*/package.json 2>nul | powershell -Command "Get-ChildItem -Filter package.json -Recurse ^| ForEach-Object { (Get-Content $_.FullName) -replace '\"catalog:\"', '\"*\"' ^| Set-Content $_.FullName }" 
+RUN sed -i 's/"workspace:\*"/"file:..\/..\/lib\/db"/g' artifacts/api-server/package.json 2>nul || powershell -Command "(Get-Content artifacts/api-server/package.json) -replace '\"workspace:\\\*\"', '\"file:../../lib/db\"' | Set-Content artifacts/api-server/package.json" 
 RUN powershell -Command "(Get-Content package.json) -replace '\"preinstall\": \".*?\",?', '' | Set-Content package.json" 2>nul || sed -i '/preinstall/d' package.json 
 RUN rm -f pnpm-workspace.yaml pnpm-lock.yaml .npmrc 
 WORKDIR /app/artifacts/api-server 
